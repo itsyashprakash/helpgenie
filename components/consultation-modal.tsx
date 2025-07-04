@@ -25,41 +25,50 @@ interface ConsultationModalProps {
 export function ConsultationModal({ children }: ConsultationModalProps) {
   const [open, setOpen] = useState(false)
   const [isPending, startTransition] = useTransition()
-  const [state, setState] = useState<any>(null)
+  const [formState, setFormState] = useState<{ success?: boolean; message?: string }>({})
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const formData = new FormData(event.currentTarget)
+    const form = event.currentTarget;
+    const formData = new FormData(form)
+    
     startTransition(async () => {
       const result = await scheduleConsultation(null, formData)
-      setState(result)
-      if (result?.success) {
-        setOpen(false)
+      setFormState(result)
+      
+      if (result.success) {
+        // Reset form fields
+        form.reset();
+        
+        // Close the modal after successful submission
+        setTimeout(() => {
+          setOpen(false)
+          setFormState({})
+        }, 3000)
       }
     })
-  }
-
-  // Close modal on successful submission
-  if (state?.success && open) {
-    setOpen(false)
   }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <Calendar className="h-5 w-5 text-blue-600" />
-            Schedule Free Consultation
-          </DialogTitle>
+          <DialogTitle>Schedule a Consultation</DialogTitle>
           <DialogDescription>
-            Book a 30-minute consultation with our IT experts. We'll discuss your needs and recommend the best support
-            plan.
+            Fill out the form below and we'll get back to you soon to confirm your consultation.
           </DialogDescription>
         </DialogHeader>
-
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+        
+        {formState.message && (
+          <div className={`p-4 mb-4 rounded-md ${
+            formState.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+          }`}>
+            {formState.message}
+          </div>
+        )}
+        
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="firstName">First Name *</Label>
@@ -171,8 +180,6 @@ export function ConsultationModal({ children }: ConsultationModalProps) {
               Cancel
             </Button>
           </div>
-
-          {state?.error && <div className="text-red-600 text-sm mt-2 p-3 bg-red-50 rounded-md">{state.error}</div>}
         </form>
       </DialogContent>
     </Dialog>

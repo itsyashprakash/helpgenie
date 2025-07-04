@@ -1,27 +1,49 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
+# Dependencies
 /node_modules
+/.pnp
+.pnp.js
 
-# next.js
+# Testing
+/coverage
+
+# Next.js
 /.next/
 /out/
 
-# production
+# Production
 /build
 
-# debug
+# Misc
+.DS_Store
+*.pem
+
+# Debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
-# env files
-.env*
+# Local env files
+.env*.local
+.env
 
-# vercel
-.vercel
+# Service account credentials
+*.json
+!package*.json
+!tsconfig*.json
+!next-env.d.ts
+!next.config.js
+!tailwind.config.js
+!postcss.config.js
+!eslint.config.js
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# IDE specific files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Helpgenie service account
+helpgenie-*.json

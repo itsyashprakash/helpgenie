@@ -1,5 +1,6 @@
 "use client"
 
+import React from 'react';
 import emailjs from 'emailjs-com'
 import { useRef, useState } from 'react'
 import { Button } from "@/components/ui/button"
@@ -9,11 +10,16 @@ import { Badge } from "@/components/ui/badge"
 import { CheckCircle, Clock, Shield, Users, Headphones, Zap, ArrowRight, Phone, Mail } from "lucide-react"
 import Link from "next/link"
 import { ConsultationModal } from "@/components/consultation-modal"
+import { AboutDialog } from "@/components/about-dialog"
+import { TermsDialog } from "@/components/terms-dialog"
 
 export default function ITServicesLanding() {
   const form = useRef<HTMLFormElement>(null)
   const [loading, setLoading] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [isConsultationOpen, setIsConsultationOpen] = React.useState(false);
+  const [isAboutOpen, setIsAboutOpen] = React.useState(false);
+  const [isTermsOpen, setIsTermsOpen] = React.useState(false);
 
   const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -73,14 +79,16 @@ export default function ITServicesLanding() {
             <Link href="#pricing" className="text-sm font-medium hover:text-blue-600 transition-colors">
               Pricing
             </Link>
-            <Link href="#about" className="text-sm font-medium hover:text-blue-600 transition-colors">
+            <button 
+              onClick={() => setIsAboutOpen(true)}
+              className="text-sm font-medium hover:text-blue-600 transition-colors"
+            >
               About
-            </Link>
+            </button>
             <Link href="#contact" className="text-sm font-medium hover:text-blue-600 transition-colors">
               Contact
             </Link>
           </nav>
-          <Button className="bg-blue-600 hover:bg-blue-700">Get Started</Button>
         </div>
       </header>
 
@@ -102,13 +110,15 @@ export default function ITServicesLanding() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                  <Link href="#pricing">View Pricing Plans</Link>
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <Link href="#pricing" className="inline-flex">
+                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                    View Pricing Plans
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
                 <ConsultationModal>
-                  <Button size="lg" variant="outline">
-                    Schedule Consultation
+                  <Button size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-gray-100">
+                    Start Free Consultation
                   </Button>
                 </ConsultationModal>
               </div>
@@ -117,7 +127,7 @@ export default function ITServicesLanding() {
         </section>
 
         {/* Features Section */}
-        <section id="services" className="w-full py-12 md:py-24 lg:py-32">
+        <section id="features" className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6 mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -155,6 +165,117 @@ export default function ITServicesLanding() {
                   Quick resolution times with proactive monitoring and immediate issue escalation.
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Services Section */}
+        <section id="services" className="w-full py-12 md:py-24 bg-gray-50">
+          <div className="container px-4 md:px-6 mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                Our Support Services
+              </h2>
+              <p className="mt-4 text-gray-600 md:text-lg max-w-2xl mx-auto">
+                Comprehensive support solutions tailored to your specific needs
+              </p>
+            </div>
+            <div className="grid gap-8 md:grid-cols-3">
+              {/* Application Support */}
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="h-12 w-12 rounded-lg bg-blue-100 flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600">
+                      <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                    </svg>
+                  </div>
+                  <CardTitle>Application Support</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600 mb-4">
+                    Expert support for all your business applications, ensuring smooth operation and quick issue resolution.
+                  </p>
+                  <ul className="space-y-2 text-sm text-gray-600">
+                    <li className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>24/7 application monitoring</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Bug fixes and patches</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Performance optimization</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Technical Support */}
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="h-12 w-12 rounded-lg bg-purple-100 flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-600">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                      <path d="m9 12 2 2 4-4" />
+                    </svg>
+                  </div>
+                  <CardTitle>Technical Support</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600 mb-4">
+                    Comprehensive technical assistance for all your IT infrastructure and system needs.
+                  </p>
+                  <ul className="space-y-2 text-sm text-gray-600">
+                    <li className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Hardware and software troubleshooting</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Network and connectivity issues</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>System maintenance and updates</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Player Support */}
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="h-12 w-12 rounded-lg bg-amber-100 flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-600">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                      <path d="M12 22.08V12" />
+                    </svg>
+                  </div>
+                  <CardTitle>Player Support</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600 mb-4">
+                    Dedicated support for gaming platforms and player-related inquiries.
+                  </p>
+                  <ul className="space-y-2 text-sm text-gray-600">
+                    <li className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>In-game issue resolution</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Account and payment support</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Community moderation</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
@@ -287,13 +408,6 @@ export default function ITServicesLanding() {
                     Start Free Consultation
                   </Button>
                 </ConsultationModal>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-blue-600 bg-transparent"
-                >
-                  Call Us Now
-                </Button>
               </div>
             </div>
           </div>
@@ -403,17 +517,17 @@ export default function ITServicesLanding() {
               <h4 className="font-semibold">Services</h4>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>
-                  <Link href="#" className="hover:text-blue-600">
-                    Customer Support
+                  <Link href="#services" className="hover:text-blue-600">
+                    Application Support
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-blue-600">
+                  <Link href="#services" className="hover:text-blue-600">
                     Technical Support
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-blue-600">
+                  <Link href="#services" className="hover:text-blue-600">
                     Player Support
                   </Link>
                 </li>
@@ -423,12 +537,15 @@ export default function ITServicesLanding() {
               <h4 className="font-semibold">Company</h4>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>
-                  <Link href="#" className="hover:text-blue-600">
+                  <button 
+                    onClick={() => setIsAboutOpen(true)}
+                    className="hover:text-blue-600 text-left w-full text-sm text-gray-600"
+                  >
                     About Us
-                  </Link>
+                  </button>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-blue-600">
+                  <Link href="#contact" className="hover:text-blue-600">
                     Contact
                   </Link>
                 </li>
@@ -443,16 +560,19 @@ export default function ITServicesLanding() {
                   </Link>
                 </li> */}
                 <li>
-                  <Link href="#" className="hover:text-blue-600">
+                  <button 
+                    onClick={() => setIsTermsOpen(true)}
+                    className="hover:text-blue-600 text-left w-full text-sm text-gray-600"
+                  >
                     Terms of Service
-                  </Link>
+                  </button>
                 </li>
               </ul>
             </div>
           </div>
           <div className="border-t mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center">
-            <p className="text-sm text-gray-600">© 2023 HelpGenie. All rights reserved.</p>
-            <div className="flex space-x-4 mt-4 sm:mt-0">
+            <p className="text-sm text-gray-600">&copy; {new Date().getFullYear()} HelpGenie. All rights reserved.</p>
+            <div className="flex space-x-4 mt-4 s:mt-0">
               {/* <Link href="#" className="text-gray-400 hover:text-blue-600">
                 <span className="sr-only">Twitter</span>
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
@@ -473,6 +593,17 @@ export default function ITServicesLanding() {
           </div>
         </div>
       </footer>
+      <ConsultationModal>
+        {null}
+      </ConsultationModal>
+      <AboutDialog 
+        open={isAboutOpen} 
+        onOpenChange={setIsAboutOpen} 
+      />
+      <TermsDialog
+        open={isTermsOpen}
+        onOpenChange={setIsTermsOpen}
+      />
     </div>
   )
 }

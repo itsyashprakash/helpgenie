@@ -52,101 +52,148 @@ export function ConsultationModal({ children }: ConsultationModalProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="sm:max-w-[95%] md:max-w-2xl lg:max-w-3xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Schedule a Consultation</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-xl md:text-2xl">Schedule a Consultation</DialogTitle>
+          <DialogDescription className="text-sm md:text-base">
             Fill out the form below and we'll get back to you soon to confirm your consultation.
           </DialogDescription>
         </DialogHeader>
         
-        {formState.message && (
-          <div className={`p-4 mb-4 rounded-md ${
-            formState.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-          }`}>
-            {formState.message}
-          </div>
-        )}
-        
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="space-y-4 py-2 px-1">
+          {/* Success/Error Message */}
+          {formState.message && (
+            <div className={`p-3 rounded-md text-sm ${
+              formState.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+            }`}>
+              {formState.message}
+            </div>
+          )}
+
+          {/* Name Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="firstName">First Name *</Label>
               <div className="relative">
-                <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                <Input id="firstName" name="firstName" placeholder="John" className="pl-10" required />
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input
+                  id="firstName"
+                  name="firstName"
+                  type="text"
+                  className="pl-10 w-full"
+                  placeholder="John"
+                  required
+                />
               </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="lastName">Last Name *</Label>
-              <Input id="lastName" name="lastName" placeholder="Doe" required />
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input
+                  id="lastName"
+                  name="lastName"
+                  type="text"
+                  className="pl-10 w-full"
+                  placeholder="Doe"
+                  required
+                />
+              </div>
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="email">Email Address *</Label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-              <Input id="email" name="email" type="email" placeholder="john@company.com" className="pl-10" required />
+          {/* Email and Company */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email Address *</Label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  className="pl-10 w-full"
+                  placeholder="john@example.com"
+                  required
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="company">Company Name</Label>
+              <div className="relative">
+                <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input
+                  id="company"
+                  name="company"
+                  type="text"
+                  className="pl-10 w-full"
+                  placeholder="Acme Inc."
+                />
+              </div>
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="company">Company Name</Label>
-            <div className="relative">
-              <Building className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-              <Input id="company" name="company" placeholder="Your Company" className="pl-10" />
-            </div>
-          </div>
-
+          {/* Phone Number */}
           <div className="space-y-2">
             <Label htmlFor="phone">Phone Number</Label>
-            <Input id="phone" name="phone" type="tel" placeholder="+1 (555) 123-4567" />
+            <Input 
+              id="phone" 
+              name="phone" 
+              type="tel" 
+              placeholder="+1 (555) 123-4567" 
+              className="w-full"
+            />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          {/* Date and Time */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="preferredDate">Preferred Date *</Label>
-              <Input
-                id="preferredDate"
-                name="preferredDate"
-                type="date"
-                min={new Date().toISOString().split("T")[0]}
-                required
-              />
+              <div className="relative">
+                <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input
+                  id="preferredDate"
+                  name="preferredDate"
+                  type="date"
+                  className="pl-10 w-full"
+                  min={new Date().toISOString().split("T")[0]}
+                  required
+                />
+              </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="preferredTime">Preferred Time *</Label>
-              <Input
-                id="preferredTime"
-                name="preferredTime"
-                type="time"
-                className="w-full"
-                required
-                onChange={(e) => {
-                  // Format the time to include AM/PM
-                  const time = e.target.value;
-                  if (time) {
-                    const [hours, minutes] = time.split(':');
-                    const date = new Date();
-                    date.setHours(parseInt(hours, 10));
-                    date.setMinutes(parseInt(minutes, 10));
-                    
-                    // Format to 12-hour with AM/PM
-                    const formattedTime = date.toLocaleTimeString('en-US', {
-                      hour: 'numeric',
-                      minute: '2-digit',
-                      hour12: true
-                    });
-                    
-                    // Store both 24h and formatted time in data attributes
-                    e.target.setAttribute('data-formatted-time', formattedTime);
-                  }
-                }}
-              />
+              <div className="relative">
+                <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input
+                  id="preferredTime"
+                  name="preferredTime"
+                  type="time"
+                  className="pl-10 w-full"
+                  required
+                  onChange={(e) => {
+                    const time = e.target.value;
+                    if (time) {
+                      const [hours, minutes] = time.split(':');
+                      const date = new Date();
+                      date.setHours(parseInt(hours, 10));
+                      date.setMinutes(parseInt(minutes, 10));
+                      
+                      const formattedTime = date.toLocaleTimeString('en-US', {
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                      });
+                      
+                      e.target.setAttribute('data-formatted-time', formattedTime);
+                    }
+                  }}
+                />
+              </div>
             </div>
           </div>
 
+          {/* Timezone */}
           <div className="space-y-2">
             <Label htmlFor="timezone">Timezone *</Label>
             <Select name="timezone" required>
@@ -164,35 +211,25 @@ export function ConsultationModal({ children }: ConsultationModalProps) {
             </Select>
           </div>
 
+          {/* Message */}
           <div className="space-y-2">
             <Label htmlFor="message">Tell us about your IT needs</Label>
-            <div className="relative">
-              <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-              <Textarea
-                id="message"
-                name="message"
-                placeholder="Describe your current IT challenges, team size, and what kind of support you're looking for..."
-                className="pl-10 min-h-[80px]"
-              />
-            </div>
+            <Textarea
+              id="message"
+              name="message"
+              placeholder="Describe your current IT challenges, team size, and what kind of support you're looking for..."
+              className="min-h-[100px] w-full"
+            />
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 pt-4">
-            <Button type="submit" disabled={isPending} className="flex-1 bg-blue-600 hover:bg-blue-700">
-              {isPending ? (
-                <>
-                  <Clock className="mr-2 h-4 w-4 animate-spin" />
-                  Scheduling...
-                </>
-              ) : (
-                <>
-                  <Calendar className="mr-2 h-4 w-4" />
-                  Schedule Consultation
-                </>
-              )}
-            </Button>
-            <Button type="button" variant="outline" onClick={() => setOpen(false)} disabled={isPending}>
-              Cancel
+          {/* Submit Button */}
+          <div className="flex justify-end pt-2">
+            <Button 
+              type="submit" 
+              disabled={isPending}
+              className="w-full sm:w-auto px-6 py-2 text-base"
+            >
+              {isPending ? 'Submitting...' : 'Schedule Consultation'}
             </Button>
           </div>
         </form>

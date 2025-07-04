@@ -28,20 +28,10 @@ export default function ITServicesLanding() {
     
     const templateParams = {
       // Template variables for the email
-      from_name: `${formData.get('first_name')} ${formData.get('last_name')}`,
-      from_email: formData.get('email'),
+      name: `${formData.get('first_name')} ${formData.get('last_name')} \n ${formData.get('email')}`,
+      email: formData.get('email'),
       company_name: formData.get('company') || 'Not provided',
       message: formData.get('message'),
-      submission_date: currentDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      }),
-      submission_time: currentDate.toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true
-      }),
       // Additional context for the support team
       service_type: 'General Inquiry',
       priority: 'Standard',
@@ -57,6 +47,7 @@ export default function ITServicesLanding() {
       )
       
       setSubmitStatus('success')
+      console.log(templateParams.email);
       form.current?.reset()
     } catch (error) {
       console.error('Failed to send message:', error)

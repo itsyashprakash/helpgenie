@@ -199,15 +199,15 @@ export default function ITServicesLanding() {
                   <ul className="space-y-2 text-sm text-gray-600">
                     <li className="flex items-start">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span>24/7 application monitoring</span>
+                      <span>Remote assistance for smooth application operation.</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span>Bug fixes and patches</span>
+                      <span>Efficiently resolves general usage queries</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span>Performance optimization</span>
+                      <span>Enhances overall user satisfaction.</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -226,7 +226,7 @@ export default function ITServicesLanding() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600 mb-4">
-                    Comprehensive technical assistance for all your IT infrastructure and system needs.
+                    Comprehensive technical assistance for all your infrastructure and system needs.
                   </p>
                   <ul className="space-y-2 text-sm text-gray-600">
                     <li className="flex items-start">
@@ -263,15 +263,15 @@ export default function ITServicesLanding() {
                   <ul className="space-y-2 text-sm text-gray-600">
                     <li className="flex items-start">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span>In-game issue resolution</span>
+                      <span>Helps with in-game issues, account problems, and general queries.</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span>Account and payment support</span>
+                      <span>Identifies and reports bugs to your development team.</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span>Community moderation</span>
+                      <span>Provides empathetic support for community interactions.</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -398,7 +398,7 @@ export default function ITServicesLanding() {
                   Ready to Get Started?
                 </h2>
                 <p className="mx-auto max-w-[600px] text-blue-100 md:text-xl">
-                  Join hundreds of businesses that trust us with their IT support needs. Get started today with a free
+                  Join hundreds of businesses that trust us with their customer support needs. Get started today with a free
                   consultation.
                 </p>
               </div>
@@ -485,7 +485,7 @@ export default function ITServicesLanding() {
                         id="message"
                         name="message"
                         className="min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                        placeholder="Tell us about your IT support needs..."
+                        placeholder="Tell us about your customer support needs..."
                         required
                       />
                     </div>

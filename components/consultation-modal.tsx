@@ -123,7 +123,6 @@ export function ConsultationModal({ children }: ConsultationModalProps) {
                 type="time"
                 className="w-full"
                 required
-                step="300" // 5 minute intervals
                 onChange={(e) => {
                   // Format the time to include AM/PM
                   const time = e.target.value;

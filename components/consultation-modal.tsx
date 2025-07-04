@@ -117,19 +117,34 @@ export function ConsultationModal({ children }: ConsultationModalProps) {
             </div>
             <div className="space-y-2">
               <Label htmlFor="preferredTime">Preferred Time *</Label>
-              <Select name="preferredTime" required>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select time" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="09:00">9:00 AM</SelectItem>
-                  <SelectItem value="10:00">10:00 AM</SelectItem>
-                  <SelectItem value="11:00">11:00 AM</SelectItem>
-                  <SelectItem value="14:00">2:00 PM</SelectItem>
-                  <SelectItem value="15:00">3:00 PM</SelectItem>
-                  <SelectItem value="16:00">4:00 PM</SelectItem>
-                </SelectContent>
-              </Select>
+              <Input
+                id="preferredTime"
+                name="preferredTime"
+                type="time"
+                className="w-full"
+                required
+                step="300" // 5 minute intervals
+                onChange={(e) => {
+                  // Format the time to include AM/PM
+                  const time = e.target.value;
+                  if (time) {
+                    const [hours, minutes] = time.split(':');
+                    const date = new Date();
+                    date.setHours(parseInt(hours, 10));
+                    date.setMinutes(parseInt(minutes, 10));
+                    
+                    // Format to 12-hour with AM/PM
+                    const formattedTime = date.toLocaleTimeString('en-US', {
+                      hour: 'numeric',
+                      minute: '2-digit',
+                      hour12: true
+                    });
+                    
+                    // Store both 24h and formatted time in data attributes
+                    e.target.setAttribute('data-formatted-time', formattedTime);
+                  }
+                }}
+              />
             </div>
           </div>
 
@@ -140,10 +155,11 @@ export function ConsultationModal({ children }: ConsultationModalProps) {
                 <SelectValue placeholder="Select timezone" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="America/New_York">Eastern Time (ET)</SelectItem>
-                <SelectItem value="America/Chicago">Central Time (CT)</SelectItem>
-                <SelectItem value="America/Denver">Mountain Time (MT)</SelectItem>
-                <SelectItem value="America/Los_Angeles">Pacific Time (PT)</SelectItem>
+                <SelectItem value="EST">Eastern Time (ET)</SelectItem>
+                <SelectItem value="CT">Central Time (CT)</SelectItem>
+                <SelectItem value="MT">Mountain Time (MT)</SelectItem>
+                <SelectItem value="PT">Pacific Time (PT)</SelectItem>
+                <SelectItem value="IST">Indian Standard Time (IST)</SelectItem>
                 <SelectItem value="UTC">UTC</SelectItem>
               </SelectContent>
             </Select>

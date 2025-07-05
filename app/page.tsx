@@ -70,7 +70,7 @@ export default function ITServicesLanding() {
         <div className="container mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
             <Shield className="h-8 w-8 text-blue-600" />
-            <span className="text-xl font-bold text-gray-900">HelpGenie</span>
+            <span className="text-xl font-bold text-blue-600">HelpGenie</span>
           </Link>
           <nav className="hidden md:flex items-center space-x-6">
             <Link href="#services" className="text-sm font-medium hover:text-blue-600 transition-colors">

@@ -10,9 +10,18 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'helpgenie',
-  description: 'Best in chat and email support',
+  title: 'HelpGenie - Customer Support Services',
+  description: 'Professional customer support services for businesses of all sizes',
   generator: 'Yash Gurav',
+  icons: {
+    icon: '/HelpGenie-favicon.png',
+    apple: '/HelpGenie-favicon.png',
+  },
+  openGraph: {
+    title: 'HelpGenie - Customer Support Services',
+    description: 'Professional customer support services for businesses of all sizes',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({

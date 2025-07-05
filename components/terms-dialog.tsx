@@ -23,8 +23,8 @@ export function TermsDialog({ open, onOpenChange }: { open: boolean; onOpenChang
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">1. Acceptance of Terms</h3>
               <p className="text-gray-700">
-                By accessing or using the services provided by HelpGenie, you agree to be bound by these Terms of Service. 
-                If you do not agree to these terms, please do not use our services.
+              By accessing our services, you agree to our Terms of Service. If you’re unsure or have any questions, feel 
+              free to review the terms or reach out to us.
               </p>
             </div>
 

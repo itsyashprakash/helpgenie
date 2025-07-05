@@ -328,7 +328,7 @@ export default function ITServicesLanding() {
                       <span>Standard response time: 2-4 hours</span>
                     </div>
                   </div>
-                  <Button id="contact" className="w-full mt-6 bg-blue-600 hover:bg-blue-700">Contact Sales</Button>
+                  <Button className="w-full mt-6 bg-blue-600 hover:bg-blue-700">Contact Sales</Button>
                 </CardContent>
               </Card>
 
@@ -373,7 +373,7 @@ export default function ITServicesLanding() {
                       <span>Dedicated account manager</span>
                     </div>
                   </div>
-                  <Button id="contact" className="w-full mt-6 bg-blue-600 hover:bg-blue-700">Contact Sales</Button>
+                  <Button className="w-full mt-6 bg-blue-600 hover:bg-blue-700">Contact Sales</Button>
                 </CardContent>
               </Card>
             </div>

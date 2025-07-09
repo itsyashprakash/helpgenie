@@ -321,7 +321,7 @@ export default function ITServicesLanding() {
                     </div>
                     <div className="flex items-center">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                      <span>Monthly usage reports</span>
+                      <span>Weekly KPIreports</span>
                     </div>
                     <div className="flex items-center">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
@@ -358,11 +358,15 @@ export default function ITServicesLanding() {
                     </div>
                     <div className="flex items-center">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
+                      <span>Social Media Support</span>
+                    </div>
+                    <div className="flex items-center">
+                      <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
                       <span>Advanced troubleshooting</span>
                     </div>
                     <div className="flex items-center">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                      <span>Weekly usage reports & analytics</span>
+                      <span>Daily KPI report</span>
                     </div>
                     <div className="flex items-center">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-3" />

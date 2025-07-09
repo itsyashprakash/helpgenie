@@ -372,10 +372,6 @@ export default function ITServicesLanding() {
                       <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
                       <span>Priority response time: 1-2 hours</span>
                     </div>
-                    <div className="flex items-center">
-                      <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                      <span>Dedicated account manager</span>
-                    </div>
                   </div>
                   <Button className="w-full mt-6 bg-blue-600 hover:bg-blue-700">Contact Sales</Button>
                 </CardContent>
